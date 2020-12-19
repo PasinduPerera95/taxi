@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import fireDB from "../../firebase";
 import VforDForm from "./VfordForm";
+import Table from './Table';
 
 const Vford = ({  }) => {
      var [vehiclefordriversObjects, setvehiclefordriversObjects] = useState({});
@@ -117,6 +118,7 @@ const Vford = ({  }) => {
             </table>
           </div>
         </div>
+        <Table {...addOrEdit} />
       </React.Fragment>
     );
 }

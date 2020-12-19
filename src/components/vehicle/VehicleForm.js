@@ -163,14 +163,25 @@ const VehicleForm = (props) => {
             <i className="fas fa-user"></i>
           </div>
         </div>
-        <input
+        {/* <input
           type="text"
           className="form-control"
           placeholder="vehicletype"
           name="vehicletype"
           value={values.vehicletype}
           onChange={handleInputChange}
-        />
+        /> */}
+               <select class="form-control "   name="vehicletype"
+            value={values.vehicletype}
+            onChange={handleInputChange}>
+              <option>Select Vehicle</option>
+  <option>Car</option>
+  <option>Van</option>
+  <option>Mini-Van</option>
+  <option>Mini-car</option>
+  <option>Dimo-Lorry</option>
+  <option>Lorry</option>
+</select>
       </div>
 
       </div>

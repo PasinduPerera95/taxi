@@ -87,7 +87,7 @@ const Dprofile = ({ props }) => {
         <div className="col-md-7">
           {Object.keys(DriverObjects).map((id) => {
             return (
-              <div className="card">
+              <div className="card" style={{backgroundColor:'#762925', marginTop:'20px', alignContent:'center'}}>
                 <div className="card-body">
                   <div className={classes.root}>
                     <div className="row">
@@ -104,16 +104,15 @@ const Dprofile = ({ props }) => {
                        <Divider/>
                         </div>
                          {/* <Driprof1 {...{DriverObjects}}/> */}
-                         
-                        <h4>Acc No:- {DriverObjects[id].accountno}</h4>
+                        <h4>D.Name:- {DriverObjects[id].dname} {DriverObjects[id].dmiddlename}</h4>
+                        <h4>D.ID:-{DriverObjects[id].index}</h4>
+                        <h4>Acc No:- {DriverObjects[id].accountno}  ({DriverObjects[id].bankname})</h4>
                         <h4>Age:- {DriverObjects[id].age}</h4>
-                        <h4>Bank Name:- {DriverObjects[id].bankname}</h4>
-                        <h4>Birthday:- {DriverObjects[id].bankname}</h4>
-                        <h4>Img:- {DriverObjects[id].dbirthday}</h4>
-                        <h4>Lisence No:- {DriverObjects[id].dimage}</h4>
-                        <h4>Driver M.Name:- {DriverObjects[id].dlno}</h4>
-                        <h4>Driver Name:- {DriverObjects[id].dmiddlename}</h4>
-                        <h4>Email:- {DriverObjects[id].dname}</h4>
+                        <h4>Address:- {DriverObjects[id].daddress}</h4>
+                        <h4>Birthday:- {DriverObjects[id].dbirthday}</h4>
+                        <h4>Lisence No.:- {DriverObjects[id].dlno}</h4> 
+                        <h4>Mobile No:- {DriverObjects[id].mobile}</h4>              
+                        <h4>Email:- {DriverObjects[id].email}</h4>
                        
                   </div>
                   <div>

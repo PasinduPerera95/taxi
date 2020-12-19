@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import fireDB from '../../firebase';
 import PkgasForm from "./PkgasForm";
-import Satable from './Satable';
+
 const PkgAssign = ({  }) => {
           var [PkgasObjects, setPkgasObjects] = useState({});
           var [currentId, setcurrentId] = useState("");
@@ -108,7 +108,7 @@ const PkgAssign = ({  }) => {
             </table>
           </div>
         </div>
-        <Satable/>
+        
       </React.Fragment>
     );
 }

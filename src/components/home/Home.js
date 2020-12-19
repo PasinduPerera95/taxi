@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Divider from "@material-ui/core/Divider";
 import DriverForm from "../driver/DriverForm";
 import fireDB from "../../firebase";
+import { BrowserRouter as Router, Switch, Route ,Link } from "react-router-dom";
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
@@ -17,6 +18,7 @@ const Home = ({ props }) => {
         var [CustomerObjects, setCustomerObjects] = useState({});
         var [DriverTrackingObjects, setDriverTrackingObjects] = useState({});
         var [PkgasObjects, setPkgasObjects] = useState({});
+           var [vehiclefordriversObjects, setvehiclefordriversObjects] = useState({});
         var [currentId, setcurrentId] = useState("");
         var i =0;
         var j =0;
@@ -26,6 +28,7 @@ const Home = ({ props }) => {
           var kk=0;
           var iii=0;
           var kkk=0;
+          var lll=0;
 
 
 
@@ -72,6 +75,18 @@ const Home = ({ props }) => {
               });
           });
 
+          //vford data retreveing...
+               fireDB
+         .database()
+         .ref()
+         .child("vehiclefordrivers")
+         .on("value", (snapshot) => {
+           if (snapshot.val() != null)
+             setvehiclefordriversObjects({
+               ...snapshot.val(),
+             });
+         });
+
 
       //  {Object.keys(PkgasObjects).map((id) => {
                    
@@ -97,8 +112,7 @@ const Home = ({ props }) => {
                   kkk++;
                 })
 
-          const data={    
-            
+          const data={          
         labels:['Pending Trips','Finished trips'],
         datasets:[{
             label:'Sales for 2020 (M)',
@@ -106,20 +120,37 @@ const Home = ({ props }) => {
              borderColor:[
                  '#D53343',
                  '#FFC107'
-                
-
              ],
              backgroundColor:[
             '#D53343',
             '#FFC107']
                     },
        ]
-        
-        
-
-
     }
+    //
+     Object.keys(vehiclefordriversObjects).map((id) => { 
+          lll++;       
+           
+                })
 
+
+    //
+
+              const data1={          
+        labels:['Assigned Vehicles','Pending  vehicles'],
+        datasets:[{
+            label:'Sales for 2020 (M)',
+            data:[lll,(kkk-lll)],
+             borderColor:[
+                 '#D53343',
+                 '#FFC107'
+             ],
+             backgroundColor:[
+            '#D53343',
+            '#FFC107']
+                    },
+       ]
+    }
       
  
     return (
@@ -151,9 +182,10 @@ const Home = ({ props }) => {
            {/* <h5 className="card-title">Primary card title</h5> */}
               <h4>Number of drivers:-{i}</h4>
     
-        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-  Click Here
+        <button type="button" class="btn btn-secondary" link to="/Driver" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+  <Link to={`./Driver`}>Click Here</Link>
 </button>
+<Switch></Switch>
       </div>
     </div>
  
@@ -188,7 +220,8 @@ const Home = ({ props }) => {
              <h4>Number of Vehicles:-{j}</h4>
   
         <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-  Click Here
+  
+ <Link to={`./vehicle`}>Click Here</Link>
 </button>
       </div>
     </div>
@@ -210,9 +243,10 @@ const Home = ({ props }) => {
 
                 })} </hide>
            {/* <h5 className="card-title">Primary card title</h5> */}
-                <h4>number of Customers:-{k} </h4>
+                <h4>Number of Customers:-{k} </h4>
         <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-  Click Here
+  
+  <Link to={`./customer`}>Click Here</Link>
 </button>
       </div>
     </div>
@@ -236,7 +270,8 @@ const Home = ({ props }) => {
            {/* <h5 className="card-title">Primary card title</h5> */}
               <h4>Total Failed Trips:-{l}</h4>
         <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-  Click Here
+
+  <Link to={`./ftrips`}>Click Here</Link>
 </button>
       </div>
     </div>
@@ -269,7 +304,7 @@ const Home = ({ props }) => {
     <h5 class="card-title">Completed Trips :-{kk}</h5>
     <h5 class="card-title">pending Trips :-{ii}</h5>
 
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    
   </div>
   </div>
    </div>
@@ -283,19 +318,20 @@ const Home = ({ props }) => {
   <Divider />
   <Divider />
   <Divider />
+  {/* //section of second dougnut chart */}
   <div className="row">
      <div className="col">
- <Doughnut data={data}/>
+ <Doughnut data={data1}/>
      </div>
      <div className="col">
 <div class="card text-white bg-dark mb-3">
       <div class="card-header">Assigned Vehicles</div>
   <div class="card-body">
     <h5 class="card-title">Total Vehicles:- {kkk}</h5>
-    <h5 class="card-title">Assigned Vehicles :-{kk}</h5>
-    <h5 class="card-title">pending  :-{ii}</h5>
+    <h5 class="card-title">Assigned Vehicles :-{lll}</h5>
+    <h5 class="card-title">pending  :-{kkk-lll}</h5>
 
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+   
   </div>
   </div>
      </div>

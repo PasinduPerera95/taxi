@@ -98,7 +98,8 @@ const Driver = ({  }) => {
             <table className="table table-bordered">
               <thead className="thread-light">
                 <tr>
-                  <th>index</th>
+                  <th>Index </th>
+                  <th> (ID) </th>
                   <th>View More</th>
                   <th>Account number</th>
                   <th>Age</th>
@@ -119,6 +120,7 @@ const Driver = ({  }) => {
                   return (
                     <tr key={id}>
                       <td>{i++}</td>
+                        <td>{DriverObjects[id].index}</td>
                       <td>
                         <Link to={`./dprof`}>more</Link>
                         <Switch>

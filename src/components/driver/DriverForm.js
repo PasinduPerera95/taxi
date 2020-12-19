@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+ import React, { useEffect, useState } from "react";
 import Drimg from "./Drimg";
 
 
@@ -72,11 +72,41 @@ const DriverForm = (props) => {
       console.log(file);
       console.log('Need to get this :-'+file.url);
       values.img1 = file.url;
-      if(Boolean(values.img2))
-      {values.img2 =file.url;}
+    //   if((values.img2)==null)
+    //   {values.img2 =file.url;}
+     }
+    ///
+         const uploadImage1 = async e => {
+      const files = e.target.files
+      const data = new FormData()
+      data.append('file',files[0])
+      data.append("upload_preset", "insta-clone");
+      setLoading(true)
+
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/deez2bddk/image/upload",{
+          method:'POST',
+          body:data
+        }
+      )
+      const file = await res.json()
+      console.log(file);
+      console.log('Need to get this :-'+file.url);
+      values.img2 = file.url;
+    //   if((values.img2)==null)
+    //   {values.img2 =file.url;}
+     }
 
 
-    }
+
+
+
+    ////
+
+
+
+
+
 
     const Assvalue=()=>{
       
@@ -370,7 +400,7 @@ const DriverForm = (props) => {
             type="file"
             name="file2"
             placeholder="Upload an image"
-            onChange={uploadImage}
+            onChange={uploadImage1}
             values={values.img2}
           />
         </div>

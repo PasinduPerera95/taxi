@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import fireDB from '../../firebase';
 import CustomerForm from "./CustomerForm";
-import Stable from "./Stable";
+
 
 
 const Customer = () => {
@@ -107,7 +107,7 @@ const Customer = () => {
             </table>
           </div>
         </div>
-        <Stable />
+   
       </React.Fragment>
     );
 }
